@@ -261,6 +261,7 @@ class RecordingService : Service() {
                             } else {
                                 ExportState.FAILED
                             },
+                            autoExported = exported.isSuccess,
                         )
                         store.writeMetadata(recording.metadataFile, updated)
                     }

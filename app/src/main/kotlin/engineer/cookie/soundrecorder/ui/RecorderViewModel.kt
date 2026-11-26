@@ -200,6 +200,7 @@ class RecorderViewModel(application: Application) : AndroidViewModel(application
                             } else {
                                 ExportState.FAILED
                             },
+                            autoExported = false,
                         ),
                     )
                 }

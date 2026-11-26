@@ -93,7 +93,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -749,13 +748,18 @@ private fun RecordingCard(
 
                 Spacer(Modifier.width(12.dp))
 
+                Text(
+                    text = recording.displayName,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+
+            Spacer(Modifier.height(6.dp))
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = recording.displayName,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
                     Text(
                         text = buildString {
                             append(formatDuration(recording.durationMs))
@@ -907,7 +911,7 @@ private fun ExportStatus(recording: Recording) {
     when {
         recording.isIncomplete -> Unit
 
-        recording.exportState == ExportState.DONE -> {
+        recording.exportState == ExportState.DONE && recording.autoExported -> {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     Icons.Rounded.CheckCircle,
@@ -923,6 +927,8 @@ private fun ExportStatus(recording: Recording) {
                 )
             }
         }
+
+        recording.exportState == ExportState.DONE -> Unit
 
         recording.exportState == ExportState.FAILED -> {
             Row(verticalAlignment = Alignment.CenterVertically) {

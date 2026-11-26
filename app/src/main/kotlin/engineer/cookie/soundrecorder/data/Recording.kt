@@ -27,6 +27,9 @@ data class Recording(
     val exportState: ExportState
         get() = metadata?.exportState ?: ExportState.NONE
 
+    val autoExported: Boolean
+        get() = metadata?.autoExported == true
+
     val hasPublicCopy: Boolean
         get() = metadata?.publicUri != null && metadata.exportState == ExportState.DONE
 }

@@ -52,9 +52,9 @@
     <string name="microphone">Microphone</string>
     <string name="auto_save">Auto-save to Music</string>
     <string name="auto_save_summary">Copy each finished recording to Music/Sound Recorder so it survives uninstall.</string>
-    <string name="quality_speech">Speech — 16 kHz mono, 48 kbps</string>
-    <string name="quality_balanced">Balanced — 22.05 kHz mono, 64 kbps</string>
-    <string name="quality_high">High — 44.1 kHz stereo, 128 kbps</string>
+    <string name="quality_speech">Speech - 16 kHz mono, 48 kbps</string>
+    <string name="quality_balanced">Balanced - 22.05 kHz mono, 64 kbps</string>
+    <string name="quality_high">High - 44.1 kHz stereo, 128 kbps</string>
     <string name="source_auto">Auto (unprocessed if available)</string>
     <string name="source_unprocessed">Unprocessed</string>
     <string name="source_voice_recognition">Voice recognition</string>
@@ -65,7 +65,7 @@
     <string name="permission_notifications_message">Android requires an ongoing notification for background recording. Without it, the system may hide the recording status, and some devices stop the recorder when the screen sleeps.</string>
     <string name="permission_settings">Open app settings</string>
     <string name="permission_denied">Permission denied. You can grant it in the app settings.</string>
-    <string name="battery_hint">For reliable multi-hour recordings, set Sound Recorder to “Unrestricted” in LineageOS battery settings.</string>
+    <string name="battery_hint">For reliable multi-hour recordings, set Sound Recorder to "Unrestricted" in battery settings.</string>
     <string name="battery_settings">Battery settings</string>
     <string name="format_warning">Note: the filename contains spaces and colons. This is fine on Android storage, but copying to FAT/exFAT may require renaming.</string>
     <string name="delete_failed">Could not delete recording</string>
@@ -74,7 +74,7 @@
     <string name="audio_record_failed">Could not start the microphone: %1$s</string>
     <string name="playback_failed">Could not play recording: %1$s</string>
     <string name="storage_private">Stored privately in %1$s</string>
-    <string name="public_copy_done">Public copy: Music/Sound Recorder</string>
+    <string name="public_copy_done">Public copy</string>
     <string name="public_copy_failed">Public copy failed</string>
     <string name="public_copy_none">App-private only</string>
     <string name="quality_label_short">%1$d kbps</string>

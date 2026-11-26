@@ -37,6 +37,8 @@ data class RecordingMetadata(
     val publicUri: String? = null,
     val publicName: String? = null,
     val exportState: ExportState = ExportState.NONE,
+    /** True only when the post-stop automatic copy succeeded. */
+    val autoExported: Boolean = false,
     val error: String? = null,
     val appVersion: String,
 ) {
@@ -55,6 +57,7 @@ data class RecordingMetadata(
         if (publicUri != null) put("publicUri", publicUri)
         if (publicName != null) put("publicName", publicName)
         put("exportState", exportState.name)
+        put("autoExported", autoExported)
         if (error != null) put("error", error)
         put("appVersion", appVersion)
     }.toString(2)
@@ -62,6 +65,10 @@ data class RecordingMetadata(
     companion object {
         fun fromJson(json: String): RecordingMetadata? = runCatching {
             val objectJson = JSONObject(json)
+            val exportState = enumValueOrDefault(
+                objectJson.optString("exportState"),
+                ExportState.NONE,
+            )
             RecordingMetadata(
                 version = objectJson.optInt("version", 1),
                 state = enumValueOrDefault(
@@ -88,10 +95,14 @@ data class RecordingMetadata(
                 overruns = objectJson.optLong("overruns", 0L),
                 publicUri = objectJson.optString("publicUri").takeIf { it.isNotBlank() },
                 publicName = objectJson.optString("publicName").takeIf { it.isNotBlank() },
-                exportState = enumValueOrDefault(
-                    objectJson.optString("exportState"),
-                    ExportState.NONE,
-                ),
+                exportState = exportState,
+                autoExported = if (objectJson.has("autoExported")) {
+                    objectJson.optBoolean("autoExported", false)
+                } else {
+                    // Older sidecars only have exportState; treat a completed
+                    // export as the automatic post-stop copy.
+                    exportState == ExportState.DONE
+                },
                 error = objectJson.optString("error").takeIf { it.isNotBlank() },
                 appVersion = objectJson.optString("appVersion"),
             )
