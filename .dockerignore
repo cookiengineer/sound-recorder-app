@@ -1,0 +1,14 @@
+.git
+.gradle
+.gradle-container
+.kotlin
+.android
+app/build
+build
+captures
+*.apk
+*.aab
+*.iml
+local.properties
+keystore.properties
+keystore
